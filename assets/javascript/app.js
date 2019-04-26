@@ -66,7 +66,7 @@ $(document).ready(function () {
                 iframe.attr("src", "https://youtube.com/embed/" + data.id.videoId);
                 iframe.appendTo("body");
                 var link = $('<a>', {
-                    text: data.snippet.title,
+                    // text: data.snippet.title,
                     target: '_new',
                     href: "https://youtube.com/watch?v=" + data.id.videoId,
                 }).appendTo('body');
