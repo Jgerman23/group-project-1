@@ -77,15 +77,14 @@ $(document).ready(function () {
 
 
 
-
-    $("#searchBut").on("click", function () {
-        event.preventDefault();
-        var movieSearch = $("#movieInput").val().trim();
-        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
-        // var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
+    function getUpcoming() {
+        // event.preventDefault();
+        // var movieSearch = $("#movieInput").val();
+         // var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
         //     movieSearch + "&page=1&include_adult=false";
 
-        var queryURL = "https://api.themoviedb.org/3/movie/17692?api_key=" + apiKey2;
+        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
+        var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + apiKey2 + "&language=en-US&page=1";
 
         $.ajax({
             url: queryURL,
@@ -98,18 +97,24 @@ $(document).ready(function () {
 
             for (var i = 0; i < response.results.length; i++) {
                 var movDiv = $("<div>");
-                var releaseDate = results[i];
-                var p = $("<p>").text("Release Date: " + releaseDate);
-            
+                var title = results[0].title;
+                var p = $("<p>").text("Title: " + title);
+                console.log(title);
+
             }
             movDiv.prepend(p);
-            
+
 
             $("#movie-info-here").prepend(movDiv);
         });
 
 
 
-    });
+    }
+
+    getUpcoming();
+
+
+
 });
 
