@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $(".input-group").hide();
 
-    $("button").click(function () {
+    $("#bttn").click(function () {
         console.log("clicked");
         // animates the bottom portion down
         $("#logoBtm").animate({
