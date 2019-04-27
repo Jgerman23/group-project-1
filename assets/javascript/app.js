@@ -10,7 +10,7 @@ $(document).ready(function () {
     var retrieveData = function (topic) {
         console.clear();
         console.log("retrieve data: " + topic);
-        
+
         var part = "snippet";
         var q = topic + "-trailer";
         var apiKey = "AIzaSyAOaGuq-aF8SJE8pVwGS_NQ7tL9-yEXn84";
@@ -20,7 +20,7 @@ $(document).ready(function () {
         var videoDefinition = "high";
         var videoLicense = "youtube";
         var safeSearch = "strict";
-        var videoCategoryId = "30"; 
+        var videoCategoryId = "30";
         //together
         var type = "video";
         var videoType = "movie";
@@ -69,5 +69,47 @@ $(document).ready(function () {
             tRow.append(iframe);
             $("#topic-result").append(tRow);
         }
+
     }
-})
+
+
+    // /**************MOVIE DATABASE API************************************************ */
+
+
+
+
+    $("#searchBut").on("click", function () {
+        event.preventDefault();
+        var movieSearch = $("#movieInput").val().trim();
+        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
+        // var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
+        //     movieSearch + "&page=1&include_adult=false";
+
+        var queryURL = "https://api.themoviedb.org/3/movie/17692?api_key=" + apiKey2;
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+
+
+            // var results = response.data;
+
+            for (var i = 0; i < response.results.length; i++) {
+                var movDiv = $("<div>");
+                var releaseDate = results[i];
+                var p = $("<p>").text("Release Date: " + releaseDate);
+            
+            }
+            movDiv.prepend(p);
+            
+
+            $("#movie-info-here").prepend(movDiv);
+        });
+
+
+
+    });
+});
+
