@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <title>Demo Front_Page</title>
+    <title>Movie Box</title>
 </head>
 
 <body>
@@ -35,7 +35,9 @@
                         <li class="list-item">The Lion King
                             <hr>
                         </li>
-
+                        <li class="list-item">The Lion King
+                            <hr>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -43,18 +45,26 @@
             <div class="col-md-8">
                 <h2 id="logoTop">M o v i e</h2>
 
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <button id="topic-search" class="btn btn-primary" type="button"
-                            id="button-addon1">Search</button>
+                <div class="search-content">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button id="topic-search" class="btn btn-primary" type="button"
+                                id="button-addon1">Search</button>
+                        </div>
+                        <input id="topic-input" type="text" class="form-control" placeholder=""
+                            aria-label="Example text with button addon" aria-describedby="button-addon1">
                     </div>
-                    <input id="topic-input" type="text" class="form-control" placeholder=""
-                        aria-label="Example text with button addon" aria-describedby="button-addon1">
                 </div>
 
-                <h2 id="logoBtm">B o x</h2>
-                <button id="bttn" type="button" class="btn btn-primary">+</button>
+                <div class="button-container">
+                    <div class="box-container">
+                        <h2 class="logoBtm">B o x</h2>
+                        <button id="bttn" type="button" class="btn btn-primary">+</button>
+                    </div>
+                </div>
+
                 <div id="topic-result"></div>
+
             </div>
             <div class="col-md-2">
                 <div class="previousSearch">
@@ -78,6 +88,7 @@
                 </div>
             </div>
         </div>
+
         <script src="assets/javascript/demo.js"></script>
         <script src="assets/javascript/app.js"></script>
 </body>
