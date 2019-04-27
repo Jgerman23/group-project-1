@@ -78,11 +78,7 @@ $(document).ready(function () {
 
 
     function getUpcoming() {
-        // event.preventDefault();
-        // var movieSearch = $("#movieInput").val();
-         // var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
-        //     movieSearch + "&page=1&include_adult=false";
-
+    
         var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
         var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + apiKey2 + "&language=en-US&page=1";
 
@@ -92,20 +88,17 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response);
 
-
-            // var results = response.data;
-
-            for (var i = 0; i < response.results.length; i++) {
-                var movDiv = $("<div>");
-                var title = results[0].title;
-                var p = $("<p>").text("Title: " + title);
-                console.log(title);
-
+            results = response.results;
+            console.log(results);
+            for (var i = 0; i < results.length;i++) {
+                var title = results[i].title;
+                var releaseDate = results[i].release_date;
+                console.log(title + "/" + releaseDate);
             }
-            movDiv.prepend(p);
+        
 
 
-            $("#movie-info-here").prepend(movDiv);
+            // $("#movie-info-here").prepend(movDiv);
         });
 
 
