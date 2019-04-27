@@ -8,13 +8,7 @@ $(document).ready(function () {
         $(".button-container").animate({
             top: "500px"
         });
-        // animates the button from bottom of the div to the right side
-        $("#bttn").animate({
-            top: "120px",
-            right: "500px",
-            opacity: "0"
-        });
-        $("#bttn").empty();
+        $("#bttn").hide();
         $(".search-content").fadeIn(2000);
     });
 

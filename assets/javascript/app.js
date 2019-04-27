@@ -103,7 +103,7 @@ $(document).ready(function () {
 
             }
             table += "</table>";
-            $(".upcomingCard").html(table);
+            $("#upcomingMovies").html(table);
 
         });
     }
