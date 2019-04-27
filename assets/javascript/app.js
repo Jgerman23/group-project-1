@@ -78,7 +78,7 @@ $(document).ready(function () {
 
 
     function getUpcoming() {
-    
+
         var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
         var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + apiKey2 + "&language=en-US&page=1";
 
@@ -88,26 +88,26 @@ $(document).ready(function () {
         }).then(function (response) {
             console.log(response);
 
-            results = response.results;
+            var results = response.results;
             console.log(results);
-            for (var i = 0; i < results.length;i++) {
-                var title = results[i].title;
-                var releaseDate = results[i].release_date;
-                console.log(title + "/" + releaseDate);
+
+
+            var table = "<table border='1|1'>";
+            for (var i = 0; i < 5; i++) {
+                table += "<tr>";
+                table += "<td>" + results[i].title + "<br>" + "Release Date: " + results[i].release_date + "</td>";
+                // table+="<td>"+results[i].release_date+"</td>";
+
+
+                table += "</tr>";
+
             }
-        
+            table += "</table>";
+            $(".upcomingCard").html(table);
 
-
-            // $("#movie-info-here").prepend(movDiv);
         });
-
-
-
     }
-
     getUpcoming();
-
-
 
 });
 
