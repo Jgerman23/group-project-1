@@ -1,13 +1,41 @@
 body{
     background-color: #202124;
+    background-image: url(../images/movie_bg.jpg);
+    width: 100%;
+}
+
+.col-md-8{
+    margin-top: 20px;
+    width: 100%;
+    /* position: relative; */
+}
+
+.col-md-2{
+    margin-top: 20px;
+
+}
+
+.upcomingCard{
+    text-align: center;
+    background-color: #fff;
+}
+
+.previousSearch{
+    text-align: center;
+    background-color: #fff;
+}
+
+.list-item{
+    text-align: center;
+    background-color: #fff;
 }
 
 #logoTop{
-    background-image: url(../images/wood_bgi_2.jpg);
+    background-image: url(../images/clapperboard_bgi_top.jpg);
     background-size: cover;
     border: 2px #202124 solid;
     border-radius: 10px 10px 0 0;
-    color: white;
+    color: yellow;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     margin-bottom: 0;
@@ -17,17 +45,12 @@ body{
     
 }
 
-.col-md-8{
-    width: 100%;
-    position: relative;
-}
-
 #logoBtm{
-    background-image: url(../images/wood_bgi_2.jpg);
+    background-image: url(../images/clapperboard_bgi_btm.jpg);
     background-size: cover;
     border: 2px #202124 solid;
     border-radius: 0 0 10px 10px;
-    color: white;
+    color: yellow;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     margin-top: 0;
