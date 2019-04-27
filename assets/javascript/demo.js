@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
-    $(".input-group").hide();
+    $(".search-content").hide();
 
     $("#bttn").click(function () {
         console.log("clicked");
         // animates the bottom portion down
-        $("#logoBtm").animate({
+        $(".button-container").animate({
             top: "500px"
         });
         // animates the button from bottom of the div to the right side
@@ -15,7 +15,7 @@ $(document).ready(function () {
             opacity: "0"
         });
         $("#bttn").empty();
-        $(".input-group").fadeIn(2000);
+        $(".search-content").fadeIn(2000);
     });
 
 });
