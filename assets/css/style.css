@@ -90,8 +90,11 @@ body{
     overflow: hidden;
 }
 
-#movieOv, #movieRD {
+#movieOv, #movieRD, #movieTi {
     color: ghostwhite;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    
 }
 
 /* iframe{
