@@ -90,6 +90,10 @@ body{
     overflow: hidden;
 }
 
+#movieOv, #movieRD {
+    color: ghostwhite;
+}
+
 /* iframe{
 
 } */

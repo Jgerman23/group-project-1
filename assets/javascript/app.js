@@ -5,6 +5,7 @@ $(document).ready(function () {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
         retrieveData(topic);
+        movieDetails();
     });
 
     var retrieveData = function (topic) {
@@ -76,7 +77,6 @@ $(document).ready(function () {
     // /**************MOVIE DATABASE API************************************************ */
 
 
-
     function getUpcoming() {
 
         var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
@@ -103,11 +103,56 @@ $(document).ready(function () {
 
             }
             table += "</table>";
-            $("#upcomingMovies").html(table);
+            $(".upcomingCard").html(table);
 
         });
     }
     getUpcoming();
+
+
+
+
+    function movieDetails() {
+        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
+        // var movieSearch = $("#topic-input").val().trim();
+
+        var movieSearch = $("#topic-input").val().trim();
+        var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
+            movieSearch + "&page=1&include_adult=false";
+        // var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + apiKey2 + "&language=en-US&page=1";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+
+            var detailResults = response.results;
+            console.log(detailResults);
+            
+
+            for (var i = 0; i < 1; i++) {
+                var overviewResults = detailResults[i].overview;
+                var releaseDate = detailResults[i].release_date;
+                // var overviewResults = response.results.overview;
+                $("#movieOv").text("Movie Overview: " + overviewResults);
+                $("#movieRD").text("Release Date: " + releaseDate);
+
+                console.log(overviewResults);
+                // console.log(overviewResults);
+            }
+
+            // var results = response.results;
+            // console.log(results);
+
+
+            // var table = "<table border='1|1'>";
+            // for (var i = 0; i < 5; i++) {
+
+        })
+    }
+    
+
 
 });
 
