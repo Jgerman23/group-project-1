@@ -9,6 +9,7 @@ $(document).ready(function () {
             top: "500px"
         });
         $("#bttn").hide();
+        // var bttnWidth = $("")
         $(".search-content").fadeIn(2000);
     });
 

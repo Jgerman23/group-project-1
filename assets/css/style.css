@@ -1,6 +1,7 @@
 body{
     background-color: #202124;
-    background-image: url(../images/movie_bg.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/movie_bg.jpg);
+    background-size: cover;
     width: 100%;
 }
 
@@ -29,28 +30,36 @@ body{
     background-color: #fff;
 }
 
-#logoTop{
-    background-image: url(../images/clapperboard_bgi_top.jpg);
+.logo-top-container{
+    background-image: url(../images/clapperboard_bgi.png);
+    background-color: #202124;
     background-size: cover;
     border: 2px #202124 solid;
     border-radius: 10px 10px 0 0;
+    padding: 20px;
+    text-align: center;
+}
+
+.logoTop{
     color: yellow;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     margin-bottom: 0;
-    padding: 20px;
     text-align: center;
     text-shadow: 2.5px 2.5px #202124;
     
 }
 
 .button-container{
-    background-image: url(../images/clapperboard_bgi_btm.jpg);
+    background-color: #202124;
+    background-image: url(../images/clapperboard_bgi_bottom.png);
     position: relative;
     text-align: center;
     background-size: cover;
     border: 2px #202124 solid;
     border-radius: 0 0 10px 10px;
+    padding: 20px;
+    margin-bottom: 20px;
 }
 
 .logoBtm{
@@ -59,7 +68,6 @@ body{
     font-weight: bold;
     display: inline-block;
     margin-top: 0;
-    padding: 20px;
     text-align: center;
     text-shadow: 2.5px 2.5px #202124;
     
@@ -72,6 +80,8 @@ body{
     width: 60px;
     font-size: x-large !important;
     font-weight: bolder;
+    margin-bottom: 5px;
+    margin-right: 5px;
     text-align: center;
 }
 
@@ -90,6 +100,16 @@ body{
     overflow: hidden;
 }
 
-/* iframe{
+table{
+    border: 2px yellow solid;
+    border-radius: 10px;
+    background-color: #202124;
+    color: yellow;
+    text-align: center;
 
-} */
+}
+
+th{
+    background-color: #202124;
+    padding: 24px;
+}
