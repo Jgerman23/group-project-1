@@ -113,3 +113,7 @@ th{
     background-color: #202124;
     padding: 24px;
 }
+
+#movieTi, #movieRD, #movieOv {
+    color: goldenrod;
+}

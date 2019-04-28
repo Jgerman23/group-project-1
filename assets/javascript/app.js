@@ -5,6 +5,7 @@ $(document).ready(function () {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
         retrieveData(topic);
+        movieDetails();
     });
 
     var retrieveData = function (topic) {
@@ -108,6 +109,42 @@ $(document).ready(function () {
         });
     }
     getUpcoming();
+
+    function movieDetails() {
+        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
+
+
+        var movieSearch = $("#topic-input").val().trim();
+        var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
+            movieSearch + "&page=1&include_adult=false";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+
+            var detailResults = response.results;
+            console.log(detailResults);
+
+
+            for (var i = 0; i < 1; i++) {
+                var movieTitle = detailResults[i].title;
+                var releaseDate = detailResults[i].release_date;
+                var overviewResults = detailResults[i].overview;
+
+                // var overviewResults = response.results.overview;
+                $("#movieTi").text("Title: " + movieTitle);
+                $("#movieRD").text("Release Date: " + releaseDate);
+                $("#movieOv").text("Movie Overview: " + overviewResults);
+                console.log(overviewResults);
+
+            }
+
+
+
+        })
+    }
 
 });
 
