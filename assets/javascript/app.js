@@ -69,6 +69,7 @@ $(document).ready(function () {
 
             tRow.append(iframe);
             $("#topic-result").append(tRow);
+            $(".search-result").slideDown(500)
         }
 
     }
@@ -130,21 +131,42 @@ $(document).ready(function () {
 
             for (var i = 0; i < 1; i++) {
                 var movieTitle = detailResults[i].title;
+                var movieRating = detailResults[i].vote_average;
                 var releaseDate = detailResults[i].release_date;
                 var overviewResults = detailResults[i].overview;
 
                 // var overviewResults = response.results.overview;
-                $("#movieTi").text("Title: " + movieTitle);
+                $("#movieTi").text(movieTitle);
+                $("#movieRa").text(movieRating);
                 $("#movieRD").text("Release Date: " + releaseDate);
                 $("#movieOv").text("Movie Overview: " + overviewResults);
                 console.log(overviewResults);
-
+                document.getElementById("stars").innerHTML = getStars(movieRating);
             }
-
-
-
         })
     }
+
+
+    function getStars(rating) {
+
+        // Round to nearest half
+        rating = Math.round(rating * 2) / 2;
+        let output = [];
+      
+        // Append all the filled whole stars
+        for (var i = rating; i >= 1; i--)
+          output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+      
+        // If there is a half a star, append it
+        if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+      
+        // Fill the empty stars
+        for (let i = (5 - rating); i >= 1; i--)
+          output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+      
+        return output.join('');
+      
+      }
 
 });
 
