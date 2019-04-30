@@ -3,7 +3,11 @@ $(document).ready(function () {
 
     //retrieve from local storage
     var previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
-   
+
+    // listener for firebase data changes
+    database.ref("/moviebox/upcomming").on("child_added", function (data) {
+    })
+
     $("#topic-search").on("click", function (event) {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
@@ -80,12 +84,17 @@ $(document).ready(function () {
 
     // these are saved to local storate
     var saveSearchLocal = function (topic) {
-        console.log("save search: "+topic);
+        console.log("save search local: " + topic);
         previousSearches.push(topic);
         localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
         displaySearches(previousSearches);
+        saveSearchFireBase(previousSearches);
     }
 
+    var saveSearchFireBase = function (previousSearches) {
+        console.log("save searh firebase");
+        database.ref("/moviebox/previousSearch/").set(previousSearches);
+    }
 
     // todo: how many do we want to display
     var displaySearches = function (previousSearches) {
@@ -103,6 +112,20 @@ $(document).ready(function () {
     // /**************MOVIE DATABASE API************************************************ */
 
 
+    var saveUpComming = function (movies) {
+        console.log("save up coming");
+        var upComming = {};
+        for (var i = 0; i < movies.length; i++) {
+            var title = movies[i].title;
+            var releaseDate = movies[i].release_date;
+            upComming = {
+                key: i,
+                movie: title,
+                date: releaseDate
+            };
+            database.ref("/moviebox/upcomming/" + i).set(upComming);
+        }
+    }
 
     function getUpcoming() {
 
@@ -117,7 +140,7 @@ $(document).ready(function () {
 
             var results = response.results;
             console.log(results);
-
+            saveUpComming(results);
 
             var table = "<table border='1|1'>";
             for (var i = 0; i < 5; i++) {
