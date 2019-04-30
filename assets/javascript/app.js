@@ -12,7 +12,7 @@ $(document).ready(function () {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
         retrieveData(topic);
-        saveSearchLocal(topic);
+        // saveSearchLocal(topic);
         movieDetails();
     });
 
@@ -70,11 +70,6 @@ $(document).ready(function () {
             iframe.attr("height", "360");
             iframe.attr("src", "https://youtube.com/embed/" + data.id.videoId);
             iframe.appendTo("body");
-            var link = $('<a>', {
-                target: '_new',
-                href: "https://youtube.com/watch?v=" + data.id.videoId,
-            }).appendTo('body');
-
             tRow.append(iframe);
             $("#topic-result").append(tRow);
             $(".search-result").slideDown(500)
@@ -88,8 +83,8 @@ $(document).ready(function () {
         console.log("save search local: " + topic);
         previousSearches.push(topic);
         localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
-        displaySearches(previousSearches);
-        saveSearchFireBase(previousSearches);
+        // displaySearches(previousSearches);
+        //saveSearchFireBase(previousSearches);
     }
 
     var saveSearchFireBase = function (previousSearches) {
