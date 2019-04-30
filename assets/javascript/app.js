@@ -1,10 +1,18 @@
 $(document).ready(function () {
     console.log("ready to go");
 
+    //retrieve from local storage
+    var previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
+
+    // listener for firebase data changes
+    database.ref("/moviebox/upcomming").on("child_added", function (data) {
+    })
+
     $("#topic-search").on("click", function (event) {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
         retrieveData(topic);
+        saveSearchLocal(topic);
         movieDetails();
     });
 
@@ -75,9 +83,50 @@ $(document).ready(function () {
     }
 
 
+    // these are saved to local storate
+    var saveSearchLocal = function (topic) {
+        console.log("save search local: " + topic);
+        previousSearches.push(topic);
+        localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
+        displaySearches(previousSearches);
+        saveSearchFireBase(previousSearches);
+    }
+
+    var saveSearchFireBase = function (previousSearches) {
+        console.log("save searh firebase");
+        database.ref("/moviebox/previousSearch/").set(previousSearches);
+    }
+
+    // todo: how many do we want to display
+    var displaySearches = function (previousSearches) {
+        var table = "<table border='1|1'>";
+        for (var i = 0; i < previousSearches.length; i++) {
+            console.log(previousSearches[i]);
+            table += "<tr>";
+            table += "<td>" + previousSearches[i] + "</td>";
+            table += "</tr>";
+        }
+        table += "</table>";
+        $("#previousSearch").html(table);
+    }
+
     // /**************MOVIE DATABASE API************************************************ */
 
 
+    var saveUpComming = function (movies) {
+        console.log("save up coming");
+        var upComming = {};
+        for (var i = 0; i < movies.length; i++) {
+            var title = movies[i].title;
+            var releaseDate = movies[i].release_date;
+            upComming = {
+                key: i,
+                movie: title,
+                date: releaseDate
+            };
+            database.ref("/moviebox/upcomming/" + i).set(upComming);
+        }
+    }
 
     function getUpcoming() {
 
@@ -92,7 +141,7 @@ $(document).ready(function () {
 
             var results = response.results;
             console.log(results);
-
+            saveUpComming(results);
 
             var table = "<table border='1|1'>";
             for (var i = 0; i < 5; i++) {
@@ -110,6 +159,7 @@ $(document).ready(function () {
         });
     }
     getUpcoming();
+    displaySearches(previousSearches);
 
     function movieDetails() {
         var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
