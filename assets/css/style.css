@@ -2,6 +2,8 @@ body{
     background-color: #202124;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/movie_bg.jpg);
     background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
     width: 100%;
 }
 
@@ -31,46 +33,48 @@ body{
 }
 
 .logo-top-container{
-    background-image: url(../images/clapperboard_bgi.png);
-    background-color: #202124;
+    background-color: gold;
     background-size: cover;
-    border: 2px #202124 solid;
+    border: 4px #202124 solid;
     border-radius: 10px 10px 0 0;
     padding: 20px;
     text-align: center;
 }
 
 .logoTop{
-    color: yellow;
+    color: #202124;
     font-family: 'Poppins', sans-serif;
-    font-weight: bold;
+    font-weight: 1000;
     margin-bottom: 0;
     text-align: center;
-    text-shadow: 2.5px 2.5px #202124;
-    
+    font-size: 3em;
+    text-shadow: 
+        -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 
+        -1px -1px black, 1px 1px black, -1px 1px black, 1px -1px black;
 }
 
 .button-container{
-    background-color: #202124;
-    background-image: url(../images/clapperboard_bgi_bottom.png);
+    background-color: gold;
     position: relative;
     text-align: center;
     background-size: cover;
-    border: 2px #202124 solid;
+    border: 4px #202124 solid;
     border-radius: 0 0 10px 10px;
     padding: 20px;
     margin-bottom: 20px;
 }
 
 .logoBtm{
-    color: yellow;
+    color: #202124;
     font-family: 'Poppins', sans-serif;
-    font-weight: bold;
+    font-weight: 1000;
     display: inline-block;
     margin-top: 0;
     text-align: center;
-    text-shadow: 2.5px 2.5px #202124;
-    
+    font-size: 3em;
+    text-shadow: 
+        -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black, 
+        -1px -1px black, 1px 1px black, -1px 1px black, 1px -1px black;
 }
 
 #bttn{
@@ -79,41 +83,76 @@ body{
     height: 60px;
     width: 60px;
     font-size: x-large !important;
-    font-weight: bolder;
     margin-bottom: 5px;
     margin-right: 5px;
     text-align: center;
+    box-shadow: 0px 2px #20212454;
 }
 
 .input-group{
     margin-top: 50px;
 }
 
-#topic-result{
-    /* position: absolute; */
-    left: 0; right: 0;
-    /* top: 50%; */
-    /* margin-top: -28.1%; */
-    /* video height / video width */
-    padding-bottom: 50%;
-    height: 0;
-    overflow: hidden;
+iframe{
+    float: right;
+    margin: 0 0 15px 35px;
+    border: 5px black solid;
 }
 
 table{
-    border: 2px yellow solid;
-    border-radius: 10px;
+    border: 2px #202124 solid;
+    border-bottom: 1px whitesmoke solid;
     background-color: #202124;
-    color: yellow;
+    color: whitesmoke;
     text-align: center;
-
 }
 
 th{
+    background-color: gold;
+    border: 5px gold solid;
+    color: #202124;
+    padding: 13px;
+    font-weight: bolder;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+button{
     background-color: #202124;
-    padding: 24px;
+    border: 2px #202124 solid;
+    color: white;
+}
+
+.search-result{
+    background-color: #202124;
+    border-radius: 10px;
+    align-content: center;
+    padding: 10px;
+    position: relative;
 }
 
 #movieTi, #movieRD, #movieOv {
-    color: goldenrod;
+    color: whitesmoke;
+    margin-top: 10px;
+    margin-left: 20px;
 }
+
+#movieTi{
+    font-size: 2em;
+}
+
+#movieOv{
+    margin-bottom: 20px;
+}
+
+#movieRa{
+    color: gold;
+    position: absolute; right: 50px ; top: 20px;
+    font-size: 2em;
+
+}
+
+#stars{
+position: absolute;  right: 95px ; top: 35px;
+}
+
