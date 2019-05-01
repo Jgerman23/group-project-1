@@ -24,6 +24,10 @@ $(document).ready(function () {
         retrieveData(topic);
         saveSearchFireBase(topic);
         movieDetails();
+        if (topic.length === 0) {
+            // $("#myModal").modal("show");
+            alert("place holder for modal, remove and uncomment modal logic")
+        }
         $("#topic-input").val("");
     });
 
