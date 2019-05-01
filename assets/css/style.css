@@ -99,22 +99,39 @@ iframe{
     border: 5px black solid;
 }
 
-table{
-    border: 2px #202124 solid;
-    border-bottom: 1px whitesmoke solid;
+.upcomingCard{
     background-color: #202124;
     color: whitesmoke;
     text-align: center;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-spacing: 0;
 }
 
 th{
     background-color: gold;
-    border: 5px gold solid;
+    border: 2px #202124 solid;
+    border-radius: 10px 10px 0 0;
+
     color: #202124;
     padding: 13px;
     font-weight: bolder;
     font-size: 1.5em;
     text-align: center;
+}
+
+td{
+    background-color: #202124;
+    /* border: 5px #202124 solid; */
+    border-bottom: 1px whitesmoke solid;
+    color: whitesmoke;
+    text-align: center;
+    padding: 5px 15px 5px 15px;
+    width: 100%;
+} 
+
+#movieLink{
+    color: whitesmoke;
 }
 
 button{

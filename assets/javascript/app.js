@@ -138,18 +138,25 @@ $(document).ready(function () {
             console.log(results);
             saveUpComming(results);
 
-            var table = "<table border='1|1'>";
             for (var i = 0; i < 5; i++) {
-                table += "<tr>";
-                table += "<td>" + results[i].title + "<br>" + "Release Date: " + results[i].release_date + "</td>";
-                // table+="<td>"+results[i].release_date+"</td>";
-
-
-                table += "</tr>";
+                var name = results[i].title
+                console.log(name);
+                var a = $("<a>");
+                a.attr("href", "#")
+                console.log(a);
+                // a.attr("onclick", "func(); return false;")
+                a.attr("id", "movieLink");
+                a.attr("data-name", results[i].title);
+                a.attr("title", name);
+                a.text(results[i].title);
+                var td = $("<td>");
+                td.html("<br>" + "Release Date: " + results[i].release_date);
+                var tr = $("<tr>");
+                td.prepend(a);
+                tr.append(td);
+                $(".upcomingCard").append(tr);
 
             }
-            table += "</table>";
-            $("#upcomingMovies").html(table);
 
         });
     }
@@ -191,27 +198,79 @@ $(document).ready(function () {
         })
     }
 
+    $(document).on("click", "#movieLink", function () {
+        console.log("click");
+        var movieSearch = $("#movieLink").val();
+        var movie = $(this).attr("data-name")
+        console.log(movie);
+        $(".button-container").animate({
+            top: "50px"
+        });
+        $("#bttn").animate({
+            opacity: 0,
+        }, "slow");
+        $(".search-content").fadeIn(1000);
+        movieClickLink()
+        console.log(movieSearch);
+    });
+
+    function movieClickLink() {
+        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
+
+
+        var movieSearch = $("#movieLink").val();
+        console.log(movieSearch);
+        var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
+            movieSearch + "&page=1&include_adult=false";
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
+
+            var detailResults = response.results;
+            console.log(detailResults);
+
+
+            for (var i = 0; i < 1; i++) {
+                var movieTitle = detailResults[i].title;
+                var movieRating = detailResults[i].vote_average;
+                var releaseDate = detailResults[i].release_date;
+                var overviewResults = detailResults[i].overview;
+
+                // var overviewResults = response.results.overview;
+                $("#movieTi").text(movieTitle);
+                $("#movieRa").text(movieRating);
+                $("#movieRD").text("Release Date: " + releaseDate);
+                $("#movieOv").text("Movie Overview: " + overviewResults);
+                console.log(overviewResults);
+                document.getElementById("stars").innerHTML = getStars(movieRating);
+            }
+        });
+    }
+
 
     function getStars(rating) {
 
         // Round to nearest half
         rating = Math.round(rating * 2) / 2;
         let output = [];
-      
+
         // Append all the filled whole stars
         for (var i = rating; i >= 1; i--)
-          output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-      
+            output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
         // If there is a half a star, append it
         if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-      
+
         // Fill the empty stars
         for (let i = (5 - rating); i >= 1; i--)
-          output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-      
+            output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
         return output.join('');
-      
-      }
+
+    }
 
 });
 
