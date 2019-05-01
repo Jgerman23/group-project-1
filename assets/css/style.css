@@ -24,7 +24,7 @@ body{
 
 .previousSearch{
     text-align: center;
-    background-color: #fff;
+    background-color: gold;
 }
 
 .list-item{
@@ -99,7 +99,7 @@ iframe{
     border: 5px black solid;
 }
 
-table{
+table, .list-item{
     border: 2px #202124 solid;
     border-bottom: 1px whitesmoke solid;
     background-color: #202124;
@@ -107,7 +107,7 @@ table{
     text-align: center;
 }
 
-th{
+th, h3{
     background-color: gold;
     border: 5px gold solid;
     color: #202124;
