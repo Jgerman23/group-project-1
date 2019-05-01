@@ -81,7 +81,7 @@ $(document).ready(function () {
     // these are saved to local storate
     var saveSearchLocal = function (topic) {
         console.log("save search local: " + topic);
-        // previousSearches.push(topic);
+        previousSearches.push(topic);
         localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
         displaySearches(previousSearches);
         saveSearchFireBase(previousSearches);
