@@ -1,34 +1,23 @@
 $(document).ready(function () {
     console.log("ready to go");
 
-    //retrieve from local storage
-    // var previousSearches = JSON.parse(localStorage.getItem("previousSearches"));
-
-    var previousSearches = ["Avengers", "The Matrix", "Star Wars", "Jaws",
-         "The Matrix", "Star Wars", "Jaws", "Office Space", "Office Space"];
+    var savedSearches = [];
 
     // listener for firebase data changes
     database.ref("/moviebox/upcomming").on("child_added", function (data) {
+    })
+    database.ref("/moviebox/previousSearch").on("child_added", function (data) {
     })
 
     $("#topic-search").on("click", function (event) {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
         retrieveData(topic);
-        saveSearchLocal(topic);
+        saveSearchFireBase(topic);
         movieDetails();
     });
 
-    var query = function () {
-        var ref = firebase.database().ref("/moviebox/previousSearch/");
-        ref.once("value")
-            .then(function (snapshot) {
-                console.log(snapshot);
-            });
-    }
-
-    // query();
-
+    
     var retrieveData = function (topic) {
         console.clear();
         console.log("retrieve data: " + topic);
@@ -100,24 +89,33 @@ $(document).ready(function () {
         saveSearchFireBase(previousSearches);
     }
 
-    var saveSearchFireBase = function (previousSearches) {
+    
+    var saveSearchFireBase = function (search) {
         console.log("save searh firebase");
-        database.ref("/moviebox/previousSearch/").set(previousSearches);
-    }
-
-    // todo: how many do we want to display
-    var displaySearches = function (previousSearches) {
-        var table = "<table border='1|1'>";
-        for (var i = 0; i < previousSearches.length; i++) {
-            console.log(previousSearches[i]);
-            table += "<tr>";
-            table += "<td>" + previousSearches[i] + "</td>";
-            table += "</tr>";
+        if (!savedSearches.includes(search)) {
+            console.log("new search, saving");
+            database.ref("/moviebox/previousSearch/").push(search);
         }
-        table += "</table>";
-        $("#previousSearch").html(table);
+        displaySearches();
     }
 
+
+    //TODO: how many do we want to display
+    var displaySearches = function () {
+        console.log("display searches");
+        var query = firebase.database().ref("/moviebox/previousSearch/");
+        query.once("value").then(function (searchedMovie) {
+            var table = "<table border='1|1'>";
+            searchedMovie.forEach(function (childsearchedMovie) {
+                var value = childsearchedMovie.val();
+                savedSearches.push(value);
+                table += "<tr>";
+                table += "<td>" + value + "</td>";
+                table += "</tr>";
+            });
+            $("#previousSearch").html(table);
+        });
+    }
     // /**************MOVIE DATABASE API************************************************ */
 
 
@@ -167,8 +165,8 @@ $(document).ready(function () {
         });
     }
     getUpcoming();
-    displaySearches(previousSearches);
-
+    displaySearches();
+    
     function movieDetails() {
         var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
 
