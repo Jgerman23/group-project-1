@@ -2,7 +2,10 @@ $(document).ready(function () {
     console.log("ready to go");
 
     //retrieve from local storage
-    var previousSearches = JSON.parse(localStorage.getItem("previousSearches"));
+    // var previousSearches = JSON.parse(localStorage.getItem("previousSearches"));
+
+    var previousSearches = ["Avengers", "The Matrix", "Star Wars", "Jaws",
+         "The Matrix", "Star Wars", "Jaws", "Office Space", "Office Space"];
 
     // listener for firebase data changes
     database.ref("/moviebox/upcomming").on("child_added", function (data) {
@@ -15,6 +18,16 @@ $(document).ready(function () {
         saveSearchLocal(topic);
         movieDetails();
     });
+
+    var query = function () {
+        var ref = firebase.database().ref("/moviebox/previousSearch/");
+        ref.once("value")
+            .then(function (snapshot) {
+                console.log(snapshot);
+            });
+    }
+
+    // query();
 
     var retrieveData = function (topic) {
         console.clear();
@@ -197,21 +210,21 @@ $(document).ready(function () {
         // Round to nearest half
         rating = Math.round(rating * 2) / 2;
         let output = [];
-      
+
         // Append all the filled whole stars
         for (var i = rating; i >= 1; i--)
-          output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-      
+            output.push('<i class="fa fa-star" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
         // If there is a half a star, append it
         if (i == .5) output.push('<i class="fa fa-star-half-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-      
+
         // Fill the empty stars
         for (let i = (5 - rating); i >= 1; i--)
-          output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
-      
+            output.push('<i class="fa fa-star-o" aria-hidden="true" style="color: gold;"></i>&nbsp;');
+
         return output.join('');
-      
-      }
+
+    }
 
 });
 
