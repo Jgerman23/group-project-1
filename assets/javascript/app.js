@@ -2,7 +2,7 @@ $(document).ready(function () {
     console.log("ready to go");
 
     //retrieve from local storage
-    var previousSearches = JSON.parse(localStorage.getItem('previousSearches'));
+    var previousSearches = JSON.parse(localStorage.getItem("previousSearches"));
 
     // listener for firebase data changes
     database.ref("/moviebox/upcomming").on("child_added", function (data) {
