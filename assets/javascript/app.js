@@ -12,7 +12,7 @@ $(document).ready(function () {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
         retrieveData(topic);
-        // saveSearchLocal(topic);
+        saveSearchLocal(topic);
         movieDetails();
     });
 
@@ -83,8 +83,8 @@ $(document).ready(function () {
         console.log("save search local: " + topic);
         previousSearches.push(topic);
         localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
-        // displaySearches(previousSearches);
-        //saveSearchFireBase(previousSearches);
+        displaySearches(previousSearches);
+        saveSearchFireBase(previousSearches);
     }
 
     var saveSearchFireBase = function (previousSearches) {
