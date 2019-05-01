@@ -99,7 +99,7 @@ iframe{
     border: 5px black solid;
 }
 
-table, .list-item{
+table, #previousSearch{
     border: 2px #202124 solid;
     border-bottom: 1px whitesmoke solid;
     background-color: #202124;
