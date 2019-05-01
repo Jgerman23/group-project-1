@@ -1,6 +1,6 @@
 $(document).ready(function () {
     console.log("ready to go");
-
+    
     var savedSearches = [];
 
     // listener for firebase data changes
@@ -9,12 +9,22 @@ $(document).ready(function () {
     database.ref("/moviebox/previousSearch").on("child_added", function (data) {
     })
 
+    //search on enter
+    var input = document.getElementById("topic-input");
+    input.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("topic-search").click();
+        }
+    });
+
     $("#topic-search").on("click", function (event) {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
         retrieveData(topic);
         saveSearchFireBase(topic);
         movieDetails();
+        $("#topic-input").val("");
     });
 
     
