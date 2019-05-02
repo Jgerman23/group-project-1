@@ -119,15 +119,21 @@ $(document).ready(function () {
         console.log("display searches");
         var query = firebase.database().ref("/moviebox/previousSearch/");
         query.once("value").then(function (searchedMovie) {
-            var table = "<table border='1|1'>";
+            // var table = "<table border='1|1'>";
             searchedMovie.forEach(function (childsearchedMovie) {
                 var value = childsearchedMovie.val();
                 savedSearches.push(value);
-                table += "<tr>";
-                table += "<td>" + value + "</td>";
-                table += "</tr>";
+
+                var td = $("<td>");
+                    td.html(value);
+                var tr = $("<tr>");
+                    tr.append(td);
+                $(".previousSearch").append(tr);
+                // table += "<tr>";
+                // table += "<td>" + value + "</td>";
+                // table += "</tr>";
             });
-            $("#previousSearch").html(table);
+            // $("#previousSearch").html(table);
         });
     }
     // /**************MOVIE DATABASE API************************************************ */
