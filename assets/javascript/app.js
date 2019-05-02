@@ -21,14 +21,17 @@ $(document).ready(function () {
     $("#topic-search").on("click", function (event) {
         var topic = $("#topic-input").val().trim();
         event.preventDefault();
-        retrieveData(topic);
-        saveSearchFireBase(topic);
-        movieDetails();
+      
         if (topic.length === 0) {
             // $("#myModal").modal("show");
             alert("place holder for modal, remove and uncomment modal logic")
         }
-        $("#topic-input").val("");
+        else {
+            retrieveData(topic);
+            saveSearchFireBase(topic);
+            movieDetails();
+            $("#topic-input").val("");
+        }
     });
 
     
@@ -118,6 +121,7 @@ $(document).ready(function () {
     var displaySearches = function () {
         console.log("display searches");
         var query = firebase.database().ref("/moviebox/previousSearch/");
+        $(".previousSearch").empty();
         query.once("value").then(function (searchedMovie) {
             // var table = "<table border='1|1'>";
             searchedMovie.forEach(function (childsearchedMovie) {
