@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+    <!-- TODO: conflict with other js, need to resolve -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
     <title>Movie Box</title>
 </head>
 
@@ -79,21 +83,28 @@
             <div class="col-md-2">
                 <div class="previousSearch">
                     <h3>Previously Searched</h3>
-                    <hr>
                     <ul class="list-group">
-                        <li class="list-item">Avengers Endgame
-                            <hr>
-                        </li>
-                        <li class="list-item">Spider-Man Far From Home
-                            <hr>
-                        </li>
-                        <li class="list-item">John Wick 3
-                            <hr>
-                        </li>
-                        <li class="list-item">The Lion King
-                            <hr>
-                        </li>
+                        <div id="previousSearch"></div>
                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Movie Box</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Please enter a movie name</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>

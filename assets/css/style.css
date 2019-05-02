@@ -24,7 +24,7 @@ body{
 
 .previousSearch{
     text-align: center;
-    background-color: #fff;
+    background-color: gold;
 }
 
 .list-item{
@@ -98,6 +98,7 @@ iframe{
     margin: 0 0 15px 35px;
     border: 5px black solid;
 }
+
 
 .upcomingCard{
     background-color: #202124;
