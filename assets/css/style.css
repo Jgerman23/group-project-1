@@ -94,7 +94,6 @@ body{
 }
 
 iframe{
-    float: right;
     margin: 0 0 15px 35px;
     border: 5px black solid;
 }
@@ -123,7 +122,6 @@ th{
 
 td{
     background-color: #202124;
-    /* border: 5px #202124 solid; */
     border-bottom: 1px whitesmoke solid;
     color: whitesmoke;
     text-align: center;
@@ -133,11 +131,16 @@ td{
 
 .previousSearch{
     background-color: #202124;
-    border-radius: 10px; 
     color: whitesmoke;
     text-align: center;
     border-collapse: separate;
-    border-spacing: 2px;
+    border-spacing: 0;
+}
+
+.previous-table{
+    background-color: #202124;
+    border-radius: 10px;
+    border-collapse: separate;
     border-spacing: 0;
 }
 
@@ -181,6 +184,41 @@ button{
 }
 
 #stars{
-position: absolute;  right: 95px ; top: 35px;
+    position: absolute;  right: 95px ; top: 35px;
+}
+
+.modal-dialog{
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+.modal-header{
+    color: gold;
+    background-color: #202124;
+    height: 45px;
+    border-bottom: 1px gold solid;
+}
+
+.modal-title{
+    line-height: .5;
+}
+
+.modal-footer{
+    background-color: #202124;
+    height: 45px;
+    border: none;
+}
+
+.modal-body{
+    background-color: #202124;
+    border-collapse: #202124;
+    color: gold;
+}
+
+.btn {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    margin-bottom: 5px;
 }
 

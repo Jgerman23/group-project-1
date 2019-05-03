@@ -5,21 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Firebase -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- favicon -->
     <link rel="icon" type="image/png" href="assets/images/icon.png">
 
-    <!-- TODO: conflict with other js, need to resolve -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
     <title>Movie Box</title>
 </head>
 
@@ -33,12 +33,9 @@
                         <th>Upcoming<br> M o v i e s</th>
                     </tr>
                 </table>
-                <!-- <div id="upcomingMovies"></div> -->
-
             </div>
 
             <div class="col-md-8">
-
                 <div class="logo-top-container">
                     <h2 class="logoTop">M O V I E</h2>
                 </div>
@@ -53,7 +50,6 @@
                     </div>
                 </div>
 
-
                 <div class="search-result">
                     <div id="movieTi"></div>
                     <div id="stars"></div>
@@ -63,7 +59,6 @@
                     <div id="topic-result"></div>
                 </div>
 
-
                 <div class="button-container">
                     <div class="box-container">
                         <h2 class="logoBtm">B O X</h2>
@@ -72,16 +67,13 @@
                 </div>
             </div>
 
-
             <div class="col-md-2">
-                <table>
+                <table class="previous-table">
                     <tr>
                         <th>Previously Searched</th>
                     </tr>
                 </table>
                 <div class="previousSearch"></div>
-
-
             </div>
         </div>
 
@@ -91,11 +83,10 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Movie Box</h4>
                     </div>
                     <div class="modal-body">
-                        <p>Please enter a movie name</p>
+                        <p>No Movie Entered, Please Enter Movie Title</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

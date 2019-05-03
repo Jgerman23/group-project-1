@@ -23,8 +23,7 @@ $(document).ready(function () {
         event.preventDefault();
       
         if (topic.length === 0) {
-            // $("#myModal").modal("show");
-            alert("place holder for modal, remove and uncomment modal logic")
+            $("#myModal").modal("show");
         }
         else {
             retrieveData(topic);
@@ -78,9 +77,6 @@ $(document).ready(function () {
             var data = response.items[i];
             console.log(data.snippet.title);
             var tRow = $("<tr>");
-            var title = $("<td>").text(data.snippet.title);
-            var kind = $("<td>").text(data.id.kind);
-            var videoId = $("<td>").text(data.id.videoId);
 
             var iframe = $("<iframe>");
             iframe.attr("id", "ytplayer");
@@ -133,11 +129,7 @@ $(document).ready(function () {
                 var tr = $("<tr>");
                     tr.append(td);
                 $(".previousSearch").append(tr);
-                // table += "<tr>";
-                // table += "<td>" + value + "</td>";
-                // table += "</tr>";
             });
-            // $("#previousSearch").html(table);
         });
     }
     // /**************MOVIE DATABASE API************************************************ */
@@ -179,7 +171,6 @@ $(document).ready(function () {
                 var a = $("<a>");
                 a.attr("href", "#")
                 console.log(a);
-                // a.attr("onclick", "func(); return false;")
                 a.attr("id", "movieLink");
                 a.attr("data-name", results[i].title);
                 a.attr("title", name);
@@ -222,7 +213,6 @@ $(document).ready(function () {
                 var releaseDate = detailResults[i].release_date;
                 var overviewResults = detailResults[i].overview;
 
-                // var overviewResults = response.results.overview;
                 $("#movieTi").text(movieTitle);
                 $("#movieRa").text(movieRating);
                 $("#movieRD").text("Release Date: " + releaseDate);
@@ -275,7 +265,6 @@ $(document).ready(function () {
                 var releaseDate = detailResults[i].release_date;
                 var overviewResults = detailResults[i].overview;
 
-                // var overviewResults = response.results.overview;
                 $("#movieTi").text(movieTitle);
                 $("#movieRa").text(movieRating);
                 $("#movieRD").text("Release Date: " + releaseDate);
