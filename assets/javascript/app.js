@@ -26,21 +26,46 @@ $(document).ready(function () {
             $("#myModal").modal("show");
         }
         else {
-            retrieveData(topic);
+            // retrieveData(topic);
+            getYoutTubeApi(topic)
             saveSearchFireBase(topic);
-            movieDetails();
+            // movieDetails();
+            getMovieDetails(topic);
             $("#topic-input").val("");
         }
     });
 
-    
-    var retrieveData = function (topic) {
+    var getYoutTubeApi = function (topic) {
+        var apiQuery = firebase.database().ref("/moviebox/youtubeapi/");
+        apiQuery.once("value").then(function (api) {
+            var youTubeAPI = api.val();
+            retrieveData(topic, youTubeAPI);
+        });
+    }
+
+    var getTMDBApi = function () {
+        var apiQuery = firebase.database().ref("/moviebox/tmdbapi/");
+        apiQuery.once("value").then(function (api) {
+            var tmdbApi = api.val();
+            getUpcoming(tmdbApi);
+        });
+    }
+
+    var getMovieDetails = function (topic) {
+        var apiQuery = firebase.database().ref("/moviebox/tmdbapi/");
+        apiQuery.once("value").then(function (api) {
+            var tmdbApi = api.val();
+            console.log(tmdbApi);
+            movieDetails(topic, tmdbApi);
+        });
+    }
+
+    var retrieveData = function (topic, youTubeAPI) {
         console.clear();
         console.log("retrieve data: " + topic);
 
         var part = "snippet";
         var q = topic + "-trailer";
-        var apiKey = "AIzaSyDjeWEZvkgPK_gyz-ejExt2pcWZ1oxbzxw";
         var maxResults = 1;
         var channelType = "show";
         var safeSearch = "strict";
@@ -60,7 +85,7 @@ $(document).ready(function () {
             + "&videoDefinition=" + videoDefinition
             + "&videoType=" + videoType
             + "&maxResults=" + maxResults
-            + "&key=" + apiKey
+            + "&key=" + youTubeAPI
         $.ajax({
             url: queryURL,
             method: "GET"
@@ -150,10 +175,9 @@ $(document).ready(function () {
         }
     }
 
-    function getUpcoming() {
+    function getUpcoming(tmdbApi) {
 
-        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
-        var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + apiKey2 + "&language=en-US&page=1";
+        var queryURL = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + tmdbApi + "&language=en-US&page=1";
 
         $.ajax({
             url: queryURL,
@@ -186,16 +210,16 @@ $(document).ready(function () {
 
         });
     }
-    getUpcoming();
+    // getUpcoming();
+    getTMDBApi();
     displaySearches();
     
-    function movieDetails() {
-        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
-
+    function movieDetails(topic, tmdbApi) {
+        console.log("movie details");
 
         var movieSearch = $("#topic-input").val().trim();
-        var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
-            movieSearch + "&page=1&include_adult=false";
+        var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + tmdbApi + "&language=en-US&query=" +
+            topic + "&page=1&include_adult=false";
 
         $.ajax({
             url: queryURL,
@@ -235,13 +259,14 @@ $(document).ready(function () {
             opacity: 0,
         }, "slow");
         $(".search-content").fadeIn(1000);
-        movieClickLink(movie)
-        retrieveData(movie)
+        // movieClickLink(movie)
+        getMovieDetails(movie);
+        // retrieveData(movie)
+        getYoutTubeApi(movie);
         console.log(movieSearch);
     });
 
     function movieClickLink(movie) {
-        var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
 
 
         var movieSearch = $("#movieLink").val();
