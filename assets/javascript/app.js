@@ -41,7 +41,7 @@ $(document).ready(function () {
 
         var part = "snippet";
         var q = topic + "-trailer";
-        var apiKey = "AIzaSyAOaGuq-aF8SJE8pVwGS_NQ7tL9-yEXn84";
+        var apiKey = "AIzaSyDjeWEZvkgPK_gyz-ejExt2pcWZ1oxbzxw";
         var maxResults = 1;
         var channelType = "show";
         var safeSearch = "strict";
@@ -245,18 +245,19 @@ $(document).ready(function () {
             opacity: 0,
         }, "slow");
         $(".search-content").fadeIn(1000);
-        movieClickLink()
+        movieClickLink(movie)
+        retrieveData(movie)
         console.log(movieSearch);
     });
 
-    function movieClickLink() {
+    function movieClickLink(movie) {
         var apiKey2 = "94495226dcf25d4ca58cfc513b3eaf4d";
 
 
         var movieSearch = $("#movieLink").val();
         console.log(movieSearch);
         var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" + apiKey2 + "&language=en-US&query=" +
-            movieSearch + "&page=1&include_adult=false";
+            movie + "&page=1&include_adult=false";
 
         $.ajax({
             url: queryURL,
