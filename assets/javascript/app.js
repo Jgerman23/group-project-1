@@ -2,7 +2,18 @@ $(document).ready(function () {
     console.log("ready to go");
     var savedSearches = [];
 
-    
+
+    firebase.database().ref("/moviebox/previousSearch").on('value', function () {
+        console.log("previous search changed");
+        displaySearches();
+    });
+
+    firebase.database().ref("/moviebox/upcoming").on('value', function () {
+        console.log("upcoming changed");
+        getUpComingMovies();
+    });
+
+
     //allow enter key to initiate search
     var input = document.getElementById("movie-input");
     input.addEventListener("keyup", function (event) {
@@ -13,7 +24,7 @@ $(document).ready(function () {
     });
 
 
-    //search button listen
+    //search button listener
     $("#movie-search").on("click", function (event) {
         var movie = $("#movie-input").val().trim();
         event.preventDefault();
@@ -131,7 +142,6 @@ $(document).ready(function () {
     }
 
 
-    //TODO: how many do we want to display
     var displaySearches = function () {
         console.log("display searches");
         var query = firebase.database().ref("/moviebox/previousSearch/");
@@ -185,11 +195,8 @@ $(document).ready(function () {
         for (var i = 0; i < 7; i++) {
             var name = results[i].title
             var releaseDate = moment(results[i].release_date).format("MMM Do YYYY");
-            console.log(name);
             var a = $("<a>");
             a.attr("href", "#")
-            console.log(a);
-            // a.attr("onclick", "func(); return false;")
             a.attr("id", "movieLink");
             a.attr("data-name", name);
             a.attr("title", name);
@@ -205,7 +212,6 @@ $(document).ready(function () {
 
 
     function movieDetails(movie, tmdbAPI) {
-        console.log("movie details");
         var queryURL = "https://api.themoviedb.org/3/search/movie?api_key=" +
             tmdbAPI + "&language=en-US&query=" +
             movie + "&page=1&include_adult=false";
@@ -226,7 +232,6 @@ $(document).ready(function () {
             var movieRating = detailResults[i].vote_average;
             var releaseDate = moment(detailResults[i].release_date).format("MMM Do YYYY");
             var overviewResults = detailResults[i].overview;
-
             $("#movieTi").text(movieTitle);
             $("#movieRa").text(movieRating);
             $("#movieRD").text("Release Date: " + releaseDate);
@@ -255,7 +260,4 @@ $(document).ready(function () {
         return output.join('');
     }
 
-
-    getUpComingMovies();
-    displaySearches();
 });
