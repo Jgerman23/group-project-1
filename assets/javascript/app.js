@@ -18,7 +18,7 @@ $(document).ready(function () {
         var movie = $("#movie-input").val().trim();
         event.preventDefault();
         if (movie.length === 0) {
-            $("#myModal").modal("show"), "slow";
+            $("#myModal").modal("show");
             shake($('#movie-search'));
             shake($('#movie-input'));
         }
