@@ -107,6 +107,7 @@ iframe{
     border-collapse: separate;
     border-spacing: 2px;
     border-spacing: 0;
+    margin-bottom: 15px;
 }
 
 th{
@@ -185,6 +186,11 @@ button{
 
 #stars{
     position: absolute;  right: 95px ; top: 35px;
+}
+
+.modal-content{
+    background-color: transparent;
+    border: none;
 }
 
 .modal-dialog{

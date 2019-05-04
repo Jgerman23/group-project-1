@@ -18,7 +18,9 @@ $(document).ready(function () {
         var movie = $("#movie-input").val().trim();
         event.preventDefault();
         if (movie.length === 0) {
-            $("#myModal").modal("show");
+            $("#myModal").modal("show"), "slow";
+            shake($('#movie-search'));
+            shake($('#movie-input'));
         }
         else {
             getMovieTrailer(movie)
@@ -27,6 +29,23 @@ $(document).ready(function () {
             $("#movie-input").val("");
         }
     });
+
+    function shake(searchBox) {
+        var interval = 40;
+        var distance = 10;
+        var times = 6;
+      
+        for (var i = 0; i < (times + 1); i++) {
+          $(searchBox).animate({
+            left:
+              (i % 2 == 0 ? distance : distance * -1)
+          }, interval);
+        }
+        $(searchBox).animate({
+          left: 0,
+          top: 0
+        }, interval);
+      }
 
 
     //upcoming movie listener
