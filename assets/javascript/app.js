@@ -184,14 +184,18 @@ $(document).ready(function () {
     var displayUpcomingMovies = function (results) {
         for (var i = 0; i < 7; i++) {
             var name = results[i].title
+            var releaseDate = moment(results[i].release_date).format("MMM Do YYYY");
+            console.log(name);
             var a = $("<a>");
             a.attr("href", "#")
+            console.log(a);
+            // a.attr("onclick", "func(); return false;")
             a.attr("id", "movieLink");
-            a.attr("data-name", results[i].title);
+            a.attr("data-name", name);
             a.attr("title", name);
-            a.text(results[i].title);
+            a.text(name);
             var td = $("<td>");
-            td.html("<br>" + "Release Date: " + results[i].release_date);
+            td.html("<br>" + "Release Date: " + releaseDate);
             var tr = $("<tr>");
             td.prepend(a);
             tr.append(td);
@@ -220,7 +224,7 @@ $(document).ready(function () {
         for (var i = 0; i < 1; i++) {
             var movieTitle = detailResults[i].title;
             var movieRating = detailResults[i].vote_average;
-            var releaseDate = detailResults[i].release_date;
+            var releaseDate = moment(detailResults[i].release_date).format("MMM Do YYYY");
             var overviewResults = detailResults[i].overview;
 
             $("#movieTi").text(movieTitle);
@@ -255,7 +259,3 @@ $(document).ready(function () {
     getUpComingMovies();
     displaySearches();
 });
-
-
-
-
